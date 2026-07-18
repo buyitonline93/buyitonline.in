@@ -1,0 +1,437 @@
+/* Core Layout Architecture Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #122315;      /* Deep Ellipsus Signature Green */
+    --bg-secondary: #1a2f1e;    /* Layered panel card green */
+    --text-primary: #f4ebd9;    /* Cream primary readable text */
+    --text-muted: #a3b899;      /* Muted sage label text */
+    --accent-gold: #d4af37;     /* Elegant interface highlight */
+    --border-subtle: rgba(244, 235, 217, 0.1);
+    --font-serif: 'Instrument Serif', Georgia, serif;
+    --font-sans: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Master Navigation Header */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    border-bottom: 1px solid var(--border-subtle);
+    background-color: var(--bg-primary);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    cursor: pointer;
+    font-style: italic;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+}
+
+.nav-btn:hover, .nav-btn.active {
+    color: var(--text-primary);
+    background-color: rgba(244, 235, 217, 0.05);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.btn-text {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.btn-primary {
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* Dynamic Page Router Views System */
+.page-view {
+    display: none;
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.page-view.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#view-workspace.page-view.active {
+    display: flex; /* Matches dashboard view structure sizing */
+}
+
+/* VIEW 1: HOME LAYOUT HERO SECTION */
+.hero {
+    padding: 8rem 2rem;
+    text-align: center;
+}
+
+.hero-container {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: 6rem;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+
+.hero-title em {
+    font-style: italic;
+    color: var(--text-muted);
+}
+
+.hero-subtitle {
+    font-size: 1.35rem;
+    color: var(--text-muted);
+    max-width: 650px;
+    margin: 0 auto 3.5rem auto;
+    font-weight: 300;
+}
+
+.btn-large {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--text-muted);
+    padding: 1rem 2.5rem;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-large:hover {
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+}
+
+.ethics-banner {
+    padding: 4rem 2rem;
+    background-color: var(--bg-secondary);
+    text-align: center;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.ethics-banner blockquote {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--text-primary);
+    font-style: italic;
+}
+
+/* VIEW 2: PRODUCT FEATURES BLUEPRINT GRID */
+.features-header {
+    text-align: center;
+    padding: 5rem 2rem 2rem 2rem;
+}
+
+.features-header h2 {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 400;
+}
+
+.features-header p {
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto 6rem auto;
+    padding: 0 2rem;
+}
+
+.feature-card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    padding: 2.5rem;
+    border-radius: 8px;
+}
+
+.feature-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+}
+
+.feature-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* VIEW 3: FULL PRODUCTION APPLICATION WORKSPACE */
+.workspace-wrapper {
+    display: grid;
+    grid-template-columns: 260px 1fr 300px;
+    height: calc(100vh - 83px); /* Snaps accurately below standard headers */
+    width: 100vw;
+    background-color: #0f1d11;
+}
+
+/* Left Document Explorer Panel */
+.workspace-sidebar-left {
+    background-color: var(--bg-primary);
+    border-right: 1px solid var(--border-subtle);
+    padding: 1.5rem;
+}
+
+.sidebar-section-title {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.doc-tree ul {
+    list-style: none;
+    padding-left: 1rem;
+    margin-top: 0.5rem;
+}
+
+.doc-tree li {
+    padding: 0.4rem 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.doc-item.active {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* Central Typographic Document Frame */
+.workspace-editor-core {
+    display: flex;
+    flex-direction: column;
+    background-color: #0d1a0e;
+}
+
+.editor-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 2rem;
+    border-bottom: 1px solid var(--border-subtle);
+    background-color: var(--bg-primary);
+}
+
+.tool-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    margin-right: 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.tool-btn:hover {
+    color: var(--text-primary);
+}
+
+.meta-group {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.pulse-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #52b788;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.text-editor-canvas {
+    flex: 1;
+    padding: 4rem 6rem;
+    overflow-y: auto;
+    outline: none;
+    max-width: 850px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.text-editor-canvas h2 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-weight: 400;
+}
+
+.text-editor-canvas p {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+}
+
+/* Right Editorial Feed Side panel */
+.workspace-sidebar-right {
+    background-color: var(--bg-primary);
+    border-left: 1px solid var(--border-subtle);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.panel-header {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.user-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.user-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.avatar-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+.avatar-green { background-color: #52b788; }
+.avatar-blue { background-color: #4361ee; }
+
+.timeline-title {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+}
+
+.card-comment {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    padding: 1rem;
+    border-radius: 6px;
+}
+
+.comment-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.comment-body {
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+}
+
+.btn-action-small {
+    background-color: rgba(244, 235, 217, 0.1);
+    color: var(--text-primary);
+    border: none;
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* SHARED SYSTEM FOOTER */
+.footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-subtle);
+    background-color: var(--bg-primary);
+}
+
+/* RESPONSIVE SCALING */
+@media(max-width: 1024px) {
+    .workspace-wrapper {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    .workspace-sidebar-left, .workspace-sidebar-right {
+        display: none; /* Auto hides dense panels for elegant viewport adjustments */
+    }
+    .hero-title {
+        font-size: 3.8rem;
+    }
+}
